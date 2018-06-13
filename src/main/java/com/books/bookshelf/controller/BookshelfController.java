@@ -2,7 +2,7 @@ package com.books.bookshelf.controller;
 
 import com.books.bookshelf.model.Book;
 import com.books.bookshelf.service.BookshelfService;
-import com.books.bookshelf.vo.Bookshelf;
+import com.books.bookshelf.dto.Bookshelf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +16,8 @@ public class BookshelfController {
     @Autowired private BookshelfService service;
 
     @GetMapping
-    public Bookshelf allBooks(){
-        return service.getAll();
+    public Bookshelf getBooks(@RequestParam(required = false) String title, @RequestParam(required = false) String desc){
+        return service.findBy(title, desc);
     }
 
     @PostMapping
