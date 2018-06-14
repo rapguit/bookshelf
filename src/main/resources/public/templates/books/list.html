@@ -1,0 +1,92 @@
+<form class="form-horizontal">
+    <div class="container-fluid" >
+        <h1 class="pull-right">Books</h1>
+    </div>
+    <div class="container-fluid" >
+        <div class="col-sm-4">
+            <div class="input-group">
+                <input type="text" ng-model="criteria" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" placeholder="Filtrar...">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-filter"></span>
+                </span>
+            </div>
+        </div>
+        <br/><br/>
+        <button class="btn btn-default pull-right"
+                title="New Book"
+                aria-label="New Book"
+                ng-click="books.new()">
+            New Book<span class="glyphicon glyphicon-plus"></span>
+        </button>
+
+        <table class="table table-hover table-responsive">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>In Stock</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="b in bookList| filter: criteria | orderBy: name" ng-show="bookList.length != 0">
+                <td>{{b.title}}</td>
+                <td>{{b.subtitle}}</td>
+                <td>{{b.inStock}}</td>
+                <td>
+                    <div class="col-sm-8 pull-right">
+                        <div class="btn-group" role="group" aria-label="Actions">
+                            <button class="btn btn-default"
+                                    title="Edit"
+                                    aria-label="Edit"
+                                    ng-click="books.edit(b.isbn)">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button class="btn btn-default"
+                                    title="View"
+                                    aria-label="View"
+                                    ng-click="books.view(s.id)">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </button>
+                            <button class="btn btn-danger"
+                                    title="Delete"
+                                    aria-label="Delete"
+                                    data-toggle="modal"
+                                    data-target="#deleteModal"
+                                    ng-click="books.select(s)">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div ng-show="bookList.length == 0">
+            <div class="alert alert-info" role="alert">
+                <strong>Ops!</strong> No books at all.
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade in" id="deleteModal" tabindex="-1" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel">Warn</h3>
+                </div>
+                <div class="modal-body">
+                    Do you want to permanently delete the book {{books.selected.title}} ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="books.delete()" >Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -- -->
+
+</form>
