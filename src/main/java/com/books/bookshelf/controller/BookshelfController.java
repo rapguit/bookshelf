@@ -27,15 +27,14 @@ public class BookshelfController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveBook(@RequestBody @Valid Book book){
-        service.save(book);
+    public Book saveBook(@RequestBody @Valid Book book){
+        return service.save(book);
     }
 
     @PutMapping("/{isbn}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBook(@PathVariable String isbn, @RequestBody @Valid Book book){
+    public Book updateBook(@PathVariable String isbn, @RequestBody @Valid Book book){
         book.setIsbn(isbn);
-        service.save(book);
+        return service.save(book);
     }
 
     @DeleteMapping("/{isbn}")
