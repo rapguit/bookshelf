@@ -36,5 +36,4 @@ A instance of this service is running in AWS cloud at EC2 machine under Elastic 
 
 API Docs
 ---
-
-`http://bookshelf-env.zjh23cgsr8.us-east-1.elasticbeanstalk.com/api/healthcheck`
+It's under `src/docs/api-guide.html` folder.
