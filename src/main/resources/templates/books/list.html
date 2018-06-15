@@ -5,7 +5,7 @@
     <div class="container-fluid" >
         <div class="col-sm-4">
             <div class="input-group">
-                <input type="text" ng-model="criteria" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" placeholder="Filtrar...">
+                <input type="text" ng-model="criteria" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" placeholder="Filter...">
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-filter"></span>
                 </span>
@@ -22,14 +22,20 @@
         <table class="table table-hover table-responsive">
             <thead>
             <tr>
+                <th>ISBN</th>
                 <th>Title</th>
                 <th>Subtitle</th>
+                <th>Publisher</th>
+                <th>Authors</th>
                 <th>In Stock</th>
             </tr>
             </thead>
             <tr ng-repeat="b in bookList| filter: criteria | orderBy: name" ng-show="bookList.length != 0">
+                <td>{{b.isbn}}</td>
                 <td>{{b.title}}</td>
                 <td>{{b.subtitle}}</td>
+                <td>{{b.publisher}}</td>
+                <td>{{b.authors}}</td>
                 <td>{{b.inStock}}</td>
                 <td>
                     <div class="col-sm-8 pull-right">
@@ -38,21 +44,21 @@
                                     title="Edit"
                                     aria-label="Edit"
                                     ng-click="books.edit(b.isbn)">
-                                <span class="glyphicon glyphicon-pencil"></span>
+                                <i class="material-icons">edit</i>
                             </button>
                             <button class="btn btn-default"
                                     title="View"
                                     aria-label="View"
-                                    ng-click="books.view(s.id)">
-                                <span class="glyphicon glyphicon-eye-open"></span>
+                                    ng-click="books.view(b.isbn)">
+                                <i class="material-icons">view</i>
                             </button>
                             <button class="btn btn-danger"
                                     title="Delete"
                                     aria-label="Delete"
                                     data-toggle="modal"
                                     data-target="#deleteModal"
-                                    ng-click="books.select(s)">
-                                <span class="glyphicon glyphicon-trash"></span>
+                                    ng-click="books.select(b)">
+                                <i class="material-icons">delete</i>
                             </button>
                         </div>
                     </div>

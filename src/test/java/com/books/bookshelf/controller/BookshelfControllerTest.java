@@ -193,7 +193,7 @@ public class BookshelfControllerTest extends IntegrationTest {
                 put("/api/bookshelf/{isbn}", book.getIsbn())
                         .contentType(APPLICATION_JSON)
                         .content(TestUtil.load("book_sample")))
-                .andExpect(status().isNoContent())
+                .andExpect(status().isOk())
                 .andDo(document("book-update",
                         pathParameters(
                                 parameterWithName("isbn").description("The book isbn to update.")
