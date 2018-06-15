@@ -20,6 +20,11 @@ public class BookshelfController {
         return service.findBy(title, desc);
     }
 
+    @GetMapping("{isbn}")
+    public Book getBook(@PathVariable String isbn){
+        return service.findOne(isbn).orElse(null);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void saveBook(@RequestBody @Valid Book book){

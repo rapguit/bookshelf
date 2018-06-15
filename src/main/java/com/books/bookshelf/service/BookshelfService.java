@@ -9,6 +9,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
@@ -20,6 +21,10 @@ public class BookshelfService {
     public Bookshelf getAll() {
         List<Book> books = repo.findAll();
         return Bookshelf.builder().bookshelf(books).build();
+    }
+
+    public Optional<Book> findOne(String isbn) {
+        return repo.findById(isbn);
     }
 
     public Book save(Book book) {

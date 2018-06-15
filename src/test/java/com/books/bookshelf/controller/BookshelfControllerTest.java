@@ -30,6 +30,29 @@ public class BookshelfControllerTest extends IntegrationTest {
     @Test
     public void should_retrieve_a_book() throws Exception {
         Book book = getObjectMapper().readValue(TestUtil.load("book_sample"), Book.class);
+        Book saved = repo.save(book);
+
+        getMockMvc().perform(
+                get("/api/bookshelf/{isbn}", saved.getIsbn()))
+                .andExpect(status().isOk())
+                .andDo(document("bookshelf-find-one",
+                        responseFields(
+                                fieldWithPath(".isbn").description("The book isbn."),
+                                fieldWithPath(".title").description("The book title."),
+                                fieldWithPath(".description").description("The book description."),
+                                fieldWithPath(".subtitle").description("The book subtitle."),
+                                fieldWithPath(".authors[]").description("The book authors names."),
+                                fieldWithPath(".published").description("The book published date."),
+                                fieldWithPath(".publisher").description("The book publisher name."),
+                                fieldWithPath(".pages").description("The book total pages number."),
+                                fieldWithPath(".inStock").description("If the book is in stock.")
+                        )
+                ));
+    }
+
+    @Test
+    public void should_retrieve_books() throws Exception {
+        Book book = getObjectMapper().readValue(TestUtil.load("book_sample"), Book.class);
         repo.save(book);
 
         getMockMvc().perform(
