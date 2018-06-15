@@ -36,6 +36,9 @@ public class BookshelfControllerTest extends IntegrationTest {
                 get("/api/bookshelf/{isbn}", saved.getIsbn()))
                 .andExpect(status().isOk())
                 .andDo(document("bookshelf-find-one",
+                        pathParameters(
+                                parameterWithName("isbn").description("The book isbn to retrieve.")
+                        ),
                         responseFields(
                                 fieldWithPath(".isbn").description("The book isbn."),
                                 fieldWithPath(".title").description("The book title."),
@@ -179,8 +182,19 @@ public class BookshelfControllerTest extends IntegrationTest {
                                 fieldWithPath(".publisher").description("The book publisher name."),
                                 fieldWithPath(".pages").description("The book total pages number."),
                                 fieldWithPath(".inStock").description("If the book is in stock.")
-                        ))
-                );
+                        ),
+                        responseFields(
+                                fieldWithPath(".isbn").description("The book isbn."),
+                                fieldWithPath(".title").description("The book title."),
+                                fieldWithPath(".description").description("The book description."),
+                                fieldWithPath(".subtitle").description("The book subtitle."),
+                                fieldWithPath(".authors[]").description("The book authors names."),
+                                fieldWithPath(".published").description("The book published date."),
+                                fieldWithPath(".publisher").description("The book publisher name."),
+                                fieldWithPath(".pages").description("The book total pages number."),
+                                fieldWithPath(".inStock").description("If the book is in stock.")
+                        )
+                ));
     }
 
     @Test
@@ -208,6 +222,17 @@ public class BookshelfControllerTest extends IntegrationTest {
                                 fieldWithPath(".publisher").description("The book publisher name."),
                                 fieldWithPath(".pages").description("The book total pages number."),
                                 fieldWithPath(".inStock").description("If the book is in stock.")
+                        ),
+                        responseFields(
+                                fieldWithPath(".isbn").description("The book isbn."),
+                                fieldWithPath(".title").description("The book title."),
+                                fieldWithPath(".description").description("The book description."),
+                                fieldWithPath(".subtitle").description("The book subtitle."),
+                                fieldWithPath(".authors[]").description("The book authors names."),
+                                fieldWithPath(".published").description("The book published date."),
+                                fieldWithPath(".publisher").description("The book publisher name."),
+                                fieldWithPath(".pages").description("The book total pages number."),
+                                fieldWithPath(".inStock").description("If the book is in stock.")
                         ))
                 );
 
@@ -221,7 +246,7 @@ public class BookshelfControllerTest extends IntegrationTest {
 
         getMockMvc().perform(delete("/api/bookshelf/{isbn}", book.getIsbn()))
                 .andExpect(status().isNoContent())
-                .andDo(document("book-update",
+                .andDo(document("book-delete",
                         pathParameters(
                                 parameterWithName("isbn").description("The book isbn to update.")
                         ))

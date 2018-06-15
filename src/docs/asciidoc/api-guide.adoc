@@ -72,98 +72,120 @@ use of HTTP status codes.
 
 [[resources-book]]
 == Bookshelf
-The Network resource is used to create, modify and list collisions networks.
+The Bookshelf resource is used to create, modify and list Books.
 
-[[resource-network-list]]
+[[bookshelf-find-all]]
 === Listing books
-A `GET` request lists all of the service's collision networks.
+A `GET` request lists all of the service's books.
 
 *Response fields*
-include::{snippets}/list-networks/response-fields.adoc[]
+include::{snippets}/bookshelf-find-all/response-fields.adoc[]
 
 ==== Example request
 
-include::{snippets}/list-networks/curl-request.adoc[]
+include::{snippets}/bookshelf-find-all/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/list-networks/http-response.adoc[]
+include::{snippets}/bookshelf-find-all/http-response.adoc[]
 
-[[resource-find-network]]
+[[bookshelf-find-by-title-and-desc]]
+=== Filter books
+A `GET` request lists all of the service's books applying the given filters os title and description.
+
+*Request parameters*
+
+include::{snippets}/bookshelf-find-by-title-and-desc/request-parameters.adoc[]
+
+*Response fields*
+
+include::{snippets}/bookshelf-find-by-title-and-desc/response-fields.adoc[]
+
+==== Example request
+
+include::{snippets}/bookshelf-find-by-title-and-desc/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/bookshelf-find-by-title-and-desc/http-response.adoc[]
+
+[[bookshelf-find-one]]
 === Finding a book
-A `GET` request one of the service's collision network.
+A `GET` request one of the service's book.
 
 *Path parameters*
 
-include::{snippets}/find-network/path-parameters.adoc[]
+include::{snippets}/bookshelf-find-one/path-parameters.adoc[]
 
 *Response fields*
 
-include::{snippets}/find-network/response-fields.adoc[]
+include::{snippets}/bookshelf-find-one/response-fields.adoc[]
 
 ==== Example request
 
-include::{snippets}/find-network/curl-request.adoc[]
+include::{snippets}/bookshelf-find-one/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/find-network/http-response.adoc[]
+include::{snippets}/bookshelf-find-one/http-response.adoc[]
 
-[[resource-add-collision]]
+[[book-save]]
 === Save a book
-A `POST` request to add new collision in a network.
-This collision gonna be included in the relevant network, and then re-arranged.
+A `POST` request to add new book in bookshelf.
 
 *Request Fields*
-include::{snippets}/add-collision/request-fields.adoc[]
 
-*Response Headers*
-include::{snippets}/add-collision/response-headers.adoc[]
+include::{snippets}/book-save/request-fields.adoc[]
 
+*Response Fields*
+
+include::{snippets}/book-save/response-fields.adoc[]
 ==== Example request
 
-include::{snippets}/add-collision/curl-request.adoc[]
+include::{snippets}/book-save/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/add-collision/http-response.adoc[]
+include::{snippets}/book-save/http-response.adoc[]
 
-[[resource-check-collision]]
+[[book-update]]
 === Edit a book
-A `POST` request to add new collision in a network.
-Answer if two nodes belong to the same collision network.
+A `PUT` request to modify a book in bookshelf.
+
+*Path parameters*
+
+include::{snippets}/book-update/path-parameters.adoc[]
 
 *Request Fields*
-include::{snippets}/check-collision/request-fields.adoc[]
+
+include::{snippets}/book-update/request-fields.adoc[]
 
 *Response Fields*
-include::{snippets}/check-collision/response-fields.adoc[]
+
+include::{snippets}/book-update/response-fields.adoc[]
 
 ==== Example request
 
-include::{snippets}/check-collision/curl-request.adoc[]
+include::{snippets}/book-update/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/check-collision/http-response.adoc[]
+include::{snippets}/book-update/http-response.adoc[]
 
 
-[[resource-check-collision]]
+[[book-delete]]
 === Delete a book
-A `POST` request to add new collision in a network.
-Answer if two nodes belong to the same collision network.
+A `DELETE` request to remove a book from bookshelf.
 
-*Request Fields*
-include::{snippets}/check-collision/request-fields.adoc[]
+*Path parameters*
 
-*Response Fields*
-include::{snippets}/check-collision/response-fields.adoc[]
+include::{snippets}/book-delete/path-parameters.adoc[]
 
 ==== Example request
 
-include::{snippets}/check-collision/curl-request.adoc[]
+include::{snippets}/book-delete/curl-request.adoc[]
 
 ==== Example response
 
-include::{snippets}/check-collision/http-response.adoc[]
+include::{snippets}/book-delete/http-response.adoc[]
 
